@@ -1,6 +1,7 @@
 from django.db import models
-from datetime import datetime, timedelta
+# from datetime import datetime, timedelta
 from accounts.models import Account
+from django.utils import timezone
 
 
 class CityModel(models.Model):
@@ -64,8 +65,8 @@ class OutletAssignmentModel(models.Model):
     
     outlet = models.ForeignKey(OutletModel, on_delete=models.CASCADE)
     user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
-    assignment_start = models.DateTimeField(default=datetime.now()) + timedelta(hours=5, minutes=30))
-    assignment_end = models.DateTimeField(default=datetime.now() + timedelta(hours=24) , blank=True )
+    assignment_start = models.DateTimeField(default=timezone.now())
+    assignment_end = models.DateTimeField(default=timezone.now() + timedelta(hours=24) , blank=True )
     status = models.CharField(max_length=10, choices=[('Active', 'Active'), ('Inactive', 'Inactive')] ,default='Active')
     
 
