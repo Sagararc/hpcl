@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="row">
+    <div class="col-sm-12 ml-4 mt-2">
+        <h2>
+            Form Fields
+
+        </h2>
+        <a href="/fieldsReg" class="btn btn-lg btn-info"><i class="fas fa-plus-square"></i> Add New Fields</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 mt-4">
+       
+                
+                    <div class="card-body mb-6">
+                        <div class="table-rep-plugin">
+                            <div class="table-responsive mb-0" data-pattern="priority-columns">
+                                <table id="tech-companies-1" class="table table-striped mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>S.NO.</th>
+                                            <th>Step</th>
+                                            <th>Label</th>
+                                            <th>Type</th>
+                                            <th>Required</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+
+
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for u in data %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ u.form_type }}</td>
+                                            <td>{{ u.label }}</td>
+                                            <td>{{ u.field_type }}</td>
+                                            <td>{{ u.req }}</td>
+                                            <td>
+                                                {% if u.status == 'Active' %}
+                                                    <span style="background-color: rgb(42, 238, 42);">
+                                                        {{ u.status }}
+                                                    </span>
+                                                {% else %}
+                                                <span style="background-color: rgb(248, 120, 120);">{{ u.status }}
+                                                </span>
+                                                {% endif %}
+                                            </td>
+                                            
+
+                                            <td> <a class='btn ' href="{% url 'updateField' u.id %}" value="" style="color: red;"> <i
+                                                        class="la la-cog la-spin progress-icon-spin"></i> </a> </td>
+                                     
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+              
+         
+
+    </div>
+</div>
+<br/>
+{% endblock %}

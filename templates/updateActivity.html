@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="row container-fluid">
+    <div class="col">
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0);">Dastyle</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
+            <li class="breadcrumb-item active">Form Elements</li>
+        </ol>
+    </div>
+
+</div>
+
+<div class="row container-fluid mb-4">
+    <div class="col-lg-7 mb-4 ">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="card-title">Activity Update</h2>
+
+
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% if error_message %}
+                <div class="alert alert-danger">
+                    {{ error_message }}
+                </div>
+                {% endif %}
+
+            </div><!--end card-header-->
+            <div class="row mb-4">
+
+                <div class="col-md-12 ">
+                    <form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+    
+    
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label text-right">
+                                <h5>Outlet</h5>
+                            </div>
+    
+                        
+                            <div class="col-md-10">
+                                <select class="form-control" name="outlet" disabled>
+                                    {% for value, label in form.outlet.field.choices %}
+                                        <option value="{{ value }}" {% if value == form.outlet.value %}selected{% endif %}>{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                                <input type="hidden" name="{{ form.outlet.name }}" value="{{ form.outlet.value }}">
+                            </div>
+                            
+                            
+                        </div>
+    
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label text-right">
+                                <h5>User</h5>
+                            </div>
+                            <div class="col-sm-10" >
+                                <select class="form-control" name="{{ form.user.name }}" disabled>
+                                    {% for value, label in form.user.field.choices %}
+                                        <option value="{{ value }}" {% if value == form.user.value %}selected{% endif %}>{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                                <input type="hidden" name="{{ form.user.name }}" value="{{ form.user.value }}">
+                                <div class="invalid-feedback">
+                                    {{ form.user.errors }}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label text-right">
+                                <h5>Date</h5>
+                            </div>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="{{ form.assignment_start.name }}" value="{{ form.assignment_start.value|date:'Y-m-d H:i:s' }}" disabled>
+                                <input type="hidden" name="{{ form.assignment_start.name }}" value="{{ form.assignment_start.value|date:'Y-m-d H:i:s' }}">
+                                <div class="invalid-feedback">
+                                    {{ form.assignment_start.errors }}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="form-group row" style="display: none;">
+                            <div class="col-sm-2 col-form-label text-right">
+                                <h5>Date</h5>
+                            </div>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" name="{{ form.assignment_end.name }}" value="{{ form.assignment_end.value|date:'Y-m-d H:i:s' }}">
+                                <div class="invalid-feedback">
+                                    {{ form.assignment_end.errors }}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+    
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label text-right">
+                                <h5>Status</h5>
+                            </div>
+                            <div class="col-md-8 mt-2">
+                                <div class="form-check-inline my-1">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="customRadio1" name="status" value="Active"
+                                               class="custom-control-input" {% if form.instance.status == 'Active' %}checked{% endif %}>
+                                        <label class="custom-control-label" for="customRadio1">Active</label>
+                                    </div>
+                                </div>
+                                <div class="form-check-inline my-1">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="customRadio2" name="status" value="Inactive"
+                                               class="custom-control-input" {% if form.instance.status == 'Inactive' %}checked{% endif %}>
+                                        <label class="custom-control-label" for="customRadio2">Inactive</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <hr>
+                        <div class=" row ml-2">
+    
+                            <div class="col-md-12  text-left">
+    
+                                <button type="submit"
+                                    class="btn btn-info btn-lg waves-effect waves-light">Submit</button>
+                            </div>
+    
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div><!--end modal-content-->
+    </div><!--end modal-dialog-->
+</div>
+
+{% endblock %}

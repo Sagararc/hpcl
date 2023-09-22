@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content%}
+
+<div class="row">
+    <div class="col-sm-12 ml-4 mt-2">
+        <h2>
+            Data
+
+        </h2>
+       
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 mt-4">
+        <div class="card">
+            <div class="card-header">
+                <form action="">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" value="" name="search"
+                                placeholder="Search by name or code..." id="example-tel-input">
+                        </div>
+
+                        <div class="col-sm-2">
+                            <select class="form-control" name="city">
+                                <option>All Cities</option>
+                                <option>Large select</option>
+                                <option>Small select</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2" >
+
+                            <button type="button" class="btn btn-info waves-effect waves-light">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div><!--end card-header-->
+            <div class="card-body">
+                <div class="card-body border">
+                    <div class="card-body">
+                        <div class="table-rep-plugin">
+                            <div class="table-responsive mb-0" data-pattern="priority-columns">
+                                <table id="tech-companies-1" class="table table-striped mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th>S.NO.</th>
+                                        <th>User</th>
+                                        <th>Outlet</th>
+                                        <th>Latitude</th>
+
+                                        <th>Longitude</th>
+                                        <th>Created At</th>
+                                        <th>Action</th>
+                                       
+                                        
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                   
+                             
+                                    </tbody>
+                                </table>
+                            </div>    
+                        </div>    
+                    </div>
+                </div>
+            </div><!--end card -body-->
+        </div><!--end card-->
+
+    </div>
+</div>
+
+{% endblock %}

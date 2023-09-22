@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content%}
+
+
+<div class="row container-fluid">
+    <div class="col">
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0);">Dastyle</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
+            <li class="breadcrumb-item active">Form Elements</li>
+        </ol>
+    </div>
+    <div class="col-sm-12  ">
+        <h2>
+            Outlets Activity
+
+        </h2>
+
+    </div>
+</div>
+
+<div class="row container-fluid">
+    <div class="col-md-12 mt-4">
+
+        <form action="">
+            <div class="row">
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" value="" name="search"
+                        placeholder="Search by  Outlet Name or Code..." id="example-tel-input">
+                </div>
+
+                <div class="col-sm-2">
+                    <select class="form-control" name="city">
+                        <option>All Cities</option>
+                        <option>Large select</option>
+                        <option>Small select</option>
+                    </select>
+                </div>
+
+
+                <div class="col-md-2">
+
+                    <button type="button" class="btn btn-info waves-effect waves-light">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="row container-fluid mt-4">
+    <div class="col-md-12 ">
+        <div class="table-rep-plugin">
+            <div class="table-responsive mb-0" data-pattern="priority-columns">
+                <table id="tech-companies-1" class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>S.NO.</th>
+                            <th>Date</th>
+                            <th>Outlet</th>
+                            <th>Code</th>
+                            <th>FWP</th>
+                            <th>Code</th>
+                            
+                          
+                            
+                          
+                       
+                            <th>Status</th>
+                            {% if id == 1 %}
+                            
+                            <th>Action</th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                        {% for u in out %}
+
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ u.assignment_start|date:'Y-m-d' }}</td>
+                            <td>{{ u.outlet }}</td>
+                            <td>{{ u.outlet.code }}</td>
+                            <td>{{ u.user }}</td>
+                            <td>{{ u.user.code }}</td>
+                            <td> {% if u.status == 'Active' %}
+                             
+                                <a type="button" href="{% url 'updateActivity' u.id %}" class="btn btn-info btn-sm">
+                                    {{ u.status }}
+                                </a>
+                             
+                                {% else %}
+                              
+                                    
+                                <a type="button" href="{% url 'updateActivity' u.id %}" class="btn btn-danger btn-sm">
+                                    {{ u.status }}
+                                </a>
+                               
+                                </span>
+                                
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {% if id == 1 %}
+                                    <form action="{% url 'deletedata' u.id %}" method="POST" class="d-inline">
+                                        {% csrf_token %}
+                                        <input type="submit" value="Delete" class="btn btn-danger">
+                                    </form>
+                                {% endif %}
+                            </td>
+                        </tr>
+      
+                        {% endfor %}
+                       
+                        
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
