@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'hpcl' ,
     'rest_framework',
     'api',
-    'accounts'
+    'accounts',
  
    
 
