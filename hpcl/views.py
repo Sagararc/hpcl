@@ -56,8 +56,9 @@ def dash(request) :
 
 #USER MANAGEMENT
 def userManage(request):
-    usr = Account.objects.all()
-    city = CityModel.objects.all()
+    usr = Account.objects.all().order_by('-id')
+    city = CityModel.objects.all().order_by('-id')
+
     search = request.GET.get('search')
     cities = request.GET.get('citySearch')
 
